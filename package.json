@@ -1,0 +1,22 @@
+{
+  "name": "rooter-feed-changelog-writer",
+  "version": "1.0.0",
+  "run-command": "pm2 start '/usr/bin/npm' --name 'rooter-feed-changelog-writer' -- start",
+  "description": "captures mysql bin-log events and pushes into kinesis stream",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --max_old_space_size=2048  server.js"
+  },
+  "author": "Arpan Jain",
+  "license": "ISC",
+  "dependencies": {
+    "@log4js-node/smtp": "^1.1.0",
+    "aws-sdk": "^2.437.0",
+    "blocked": "^1.2.1",
+    "config": "^3.1.0",
+    "log4js": "^4.1.0",
+    "redis": "^2.8.0",
+    "zongji": "^0.4.7"
+  }
+}

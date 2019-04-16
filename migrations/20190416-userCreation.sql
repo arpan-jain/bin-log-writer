@@ -1,0 +1,2 @@
+CREATE USER 'zongji-user'@'%' IDENTIFIED BY 'zongji_r0073rf33dsp0r7s10_';
+GRANT REPLICATION SLAVE,REPLICATION CLIENT, SELECT ON *.* TO 'zongji-user'@'%';

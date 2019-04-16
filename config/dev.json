@@ -1,0 +1,26 @@
+{
+  "mysql" : {
+    "host": "rooter-dev.csfixm4qsurw.ap-southeast-1.rds.amazonaws.com",
+    "user": "zongji-user",
+    "password": "zongji_r0073rf33dsp0r7s10_",
+    "database": "rooter_feed"
+  },
+  "aws": {
+    "accessKeyId": "AKIAIDO6NKBYWINYTJWQ",
+    "secretAccessKey": "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",
+    "region": "ap-south-1"
+  },
+  "redis":{
+    "host":"52.220.142.73",
+    "port":"6438"
+  },
+  "mail":{
+    "subject":"dev : rooter-feed-changelog-writer error",
+    "recipients":"arpan@rooter.io",
+    "username":"dev-error@rooter.io",
+    "password":"neymar_psg2017"
+  },
+  "offsetKey":"kinesis:rooter-feed-dev",
+  "kinesisStreamName":"rooter-feed-dev",
+  "zongjiServerId": 100
+}

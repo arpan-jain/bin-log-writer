@@ -1,0 +1,26 @@
+{
+  "mysql" : {
+    "host": "rooter-dev.csfixm4qsurw.ap-southeast-1.rds.amazonaws.com",
+    "user": "root",
+    "password": "sportsx101",
+    "database": "sportsx"
+  },
+  "aws": {
+    "accessKeyId": "AKIAIDO6NKBYWINYTJWQ",
+    "secretAccessKey": "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",
+    "region": "ap-south-1"
+  },
+  "redis":{
+    "host":"52.220.142.73",
+    "port":"6438"
+  },
+  "mail":{
+    "subject":"prod : rooter-feed-changelog-writer error",
+    "recipients":"arpan@rooter.io,akshat@rooter.io,backend@rooter.io",
+    "username":"error@rooter.io",
+    "password":"neymar_psg2017"
+  },
+  "offsetKey":"kinesis:rooter-feed-prod",
+  "kinesisStreamName":"rooter-feed-prod",
+  "zongjiServerId": 100
+}

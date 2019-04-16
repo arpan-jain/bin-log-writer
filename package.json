@@ -1,7 +1,7 @@
 {
   "name": "rooter-feed-changelog-writer",
   "version": "1.0.0",
-  "run-command": "pm2 start '/usr/bin/npm' --name 'rooter-feed-changelog-writer' -- start",
+  "run-command": "pm2 start npm --name 'rooter-feed-changelog-writer' -- start",
   "description": "captures mysql bin-log events and pushes into kinesis stream",
   "main": "server.js",
   "scripts": {

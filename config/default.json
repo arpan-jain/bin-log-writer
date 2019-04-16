@@ -1,9 +1,9 @@
 {
   "mysql" : {
-    "host": "rooter-dev.csfixm4qsurw.ap-southeast-1.rds.amazonaws.com",
-    "user": "root",
-    "password": "sportsx101",
-    "database": "sportsx"
+    "host": "rooter-feed-dev.csl52u9nvas4.ap-south-1.rds.amazonaws.com",
+    "user": "zongji-user",
+    "password": "zongji_r0073rf33dsp0r7s10_",
+    "database": "rooter_feed"
   },
   "aws": {
     "accessKeyId": "AKIAIDO6NKBYWINYTJWQ",
@@ -11,7 +11,7 @@
     "region": "ap-south-1"
   },
   "redis":{
-    "host":"52.220.142.73",
+    "host":"35.154.116.120",
     "port":"6438"
   },
   "mail":{

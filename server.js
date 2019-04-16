@@ -3,7 +3,7 @@
 // determining NODE_ENV
 const environmentVariables = process.env;
 
-const zongji = require('zongji'),
+const ZongJi = require('zongji'),
 	config = require('config'),
 	logger = require('./logger'),
 	kinesis = require('./kinesisInitialize'),
@@ -256,7 +256,7 @@ const initialize = function () {
 					rows: rows
 				};
 
-				//console.log(eventObject.schema + ' : ' + eventObject.table);
+				console.log(eventObject.schema + ' : ' + eventObject.table);
 				return eventQueue.push(eventObject);
 			}
 			catch (ex) {

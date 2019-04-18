@@ -18,6 +18,6 @@
     "log4js": "^4.1.0",
     "longjohn": "^0.2.12",
     "redis": "^2.8.0",
-    "zongji": "^0.4.7"
+    "zongji": "https://github.com/arpan-jain/zongji.git"
   }
 }

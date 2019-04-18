@@ -265,12 +265,12 @@ const initialize = function () {
 					eventObject.rows.forEach(function (rowElement) {
 						// delete unnecessary keys from rowElement
 						Object.keys(rowElement.before).forEach(function (currentKey) {
-							if (currentKey !== 'id' || currentKey !== 'created_at' || currentKey !== 'updated_at' || currentKey !== 'deleted') {
+							if (currentKey !== 'id' && currentKey !== 'created_at' && currentKey !== 'updated_at' && currentKey !== 'deleted') {
 								delete rowElement.before[currentKey];
 							}
 						});
 						Object.keys(rowElement.after).forEach(function (currentKey) {
-							if (currentKey !== 'id' || currentKey !== 'created_at' || currentKey !== 'updated_at' || currentKey !== 'deleted') {
+							if (currentKey !== 'id' && currentKey !== 'created_at' && currentKey !== 'updated_at' && currentKey !== 'deleted') {
 								delete rowElement.after[currentKey];
 							}
 						});
@@ -280,7 +280,7 @@ const initialize = function () {
 					eventObject.rows.forEach(function (rowElement) {
 						// delete unnecessary keys from rowElement
 						Object.keys(rowElement).forEach(function (currentKey) {
-							if (currentKey !== 'id' || currentKey !== 'created_at' || currentKey !== 'updated_at' || currentKey !== 'deleted') {
+							if (currentKey !== 'id' && currentKey !== 'created_at' && currentKey !== 'updated_at' && currentKey !== 'deleted') {
 								delete rowElement[currentKey];
 							}
 						});

@@ -140,7 +140,7 @@ const fetchAndPutEvent = function () {
 						});
 				});
 		});*/
-		return kinesis.putRecord(payloadString, function (err, result) {
+		return kinesis.putRecord(payloadString, sequenceNumber,function (err, result) {
 			if (err) {
 				// in case of error while putting in kinesis stream kill the server and replay from the
 				// last successful offset

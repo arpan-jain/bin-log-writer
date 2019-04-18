@@ -19,6 +19,7 @@ require('longjohn');
 let redisKey = config.offsetKey,   // key to hold current offset position
 	binlogName = null,             // current bin log file name
 	binlogPos = null,              // current bin log pos
+	sequenceNumber = null,
 	dbConfigObject = config.mysql,
 	eventQueue = []; // mysql config
 
@@ -149,9 +150,11 @@ const fetchAndPutEvent = function () {
 				}, 10000);
 			}
 			try {
+				sequenceNumber = result.SequenceNumber;
 				const offsetObject = {
 					binlogName: currentEvent.currentBinlogName,
-					binlogPos: currentEvent.currentBinlogPos
+					binlogPos: currentEvent.currentBinlogPos,
+					sequenceNumber: sequenceNumber
 				};
 				redisClient.hmset(redisKey, offsetObject);
 				//var t2 = new Date();
@@ -203,6 +206,10 @@ const initialize = function () {
 			//initializing the binlogPos
 			if (offsetObject.binlogPos && offsetObject.binlogPos.length) {
 				binlogPos = offsetObject.binlogPos;
+			}
+			//initializing the sequenceForOrdering
+			if (offsetObject.sequenceNumber && offsetObject.sequenceNumber.length) {
+				sequenceNumber = offsetObject.sequenceNumber;
 			}
 		}
 

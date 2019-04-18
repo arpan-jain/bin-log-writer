@@ -97,8 +97,7 @@ const fetchAndPutEvent = function () {
 			//console.log('payloadString',payloadString);
 			//console.log('size of buffer (in kB)', ((payloadString.length) * 2) / 1024);
 			//console.log('\n\n');
-		}
-		catch (ex) {
+		} catch (ex) {
 			logger.fatal('Exception in fetching from eventQueue', ex);
 			return setTimeout(function () {
 				process.exit(0);
@@ -140,7 +139,7 @@ const fetchAndPutEvent = function () {
 						});
 				});
 		});*/
-		return kinesis.putRecord(payloadString, sequenceNumber,function (err, result) {
+		return kinesis.putRecord(payloadString, sequenceNumber, function (err, result) {
 			if (err) {
 				// in case of error while putting in kinesis stream kill the server and replay from the
 				// last successful offset
@@ -159,8 +158,7 @@ const fetchAndPutEvent = function () {
 				redisClient.hmset(redisKey, offsetObject);
 				//var t2 = new Date();
 				//console.log('diff', t2.getTime() - t1.getTime());
-			}
-			catch (ex) {
+			} catch (ex) {
 				logger.fatal('Exception in putting kinesis record', ex);
 				setTimeout(function () {
 					process.exit(0);
@@ -171,8 +169,7 @@ const fetchAndPutEvent = function () {
 			});
 		});
 
-	}
-	else {
+	} else {
 		// in case of empty queue just recursively call the function again
 		return setImmediate(function () {
 			return fetchAndPutEvent();
@@ -263,10 +260,36 @@ const initialize = function () {
 					rows: rows
 				};
 
-				console.log(eventObject.schema + ' : ' + eventObject.table);
+				// delete unnecessary data to save data transfer
+				if (eventObject.type === 'updaterows') {
+					eventObject.rows.forEach(function (rowElement) {
+						// delete unnecessary keys from rowElement
+						Object.keys(rowElement.before).forEach(function (currentKey) {
+							if (currentKey !== 'id' || currentKey !== 'created_at' || currentKey !== 'updated_at' || currentKey !== 'deleted') {
+								delete rowElement.before[currentKey];
+							}
+						});
+						Object.keys(rowElement.after).forEach(function (currentKey) {
+							if (currentKey !== 'id' || currentKey !== 'created_at' || currentKey !== 'updated_at' || currentKey !== 'deleted') {
+								delete rowElement.after[currentKey];
+							}
+						});
+					});
+				}
+				else{
+					eventObject.rows.forEach(function (rowElement) {
+						// delete unnecessary keys from rowElement
+						Object.keys(rowElement).forEach(function (currentKey) {
+							if (currentKey !== 'id' || currentKey !== 'created_at' || currentKey !== 'updated_at' || currentKey !== 'deleted') {
+								delete rowElement[currentKey];
+							}
+						});
+					});
+				}
+
+				console.log(eventObject.schema + ' : ' + eventObject.table + ' : ' + JSON.stringify(eventObject));
 				return eventQueue.push(eventObject);
-			}
-			catch (ex) {
+			} catch (ex) {
 				logger.fatal('An exception Occurred', ex);
 				setTimeout(function () {
 					process.exit(0);

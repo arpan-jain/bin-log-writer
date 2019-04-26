@@ -267,6 +267,8 @@ const initialize = function () {
 						Object.keys(rowElement.before).forEach(function (currentKey) {
 							if (currentKey !== 'id'
 								&& currentKey !== 'feed_id'
+								&& currentKey !== 'tag_id'
+								&& currentKey !== 'feed_type_id'
 								&& currentKey !== 'sports_fan_id'
 								&& currentKey !== 'created_at'
 								&& currentKey !== 'updated_at'
@@ -277,6 +279,8 @@ const initialize = function () {
 						Object.keys(rowElement.after).forEach(function (currentKey) {
 							if (currentKey !== 'id'
 								&& currentKey !== 'feed_id'
+								&& currentKey !== 'tag_id'
+								&& currentKey !== 'feed_type_id'
 								&& currentKey !== 'sports_fan_id'
 								&& currentKey !== 'created_at'
 								&& currentKey !== 'updated_at'
@@ -292,6 +296,8 @@ const initialize = function () {
 						Object.keys(rowElement).forEach(function (currentKey) {
 							if (currentKey !== 'id'
 								&& currentKey !== 'feed_id'
+								&& currentKey !== 'tag_id'
+								&& currentKey !== 'feed_type_id'
 								&& currentKey !== 'sports_fan_id'
 								&& currentKey !== 'created_at'
 								&& currentKey !== 'updated_at'
@@ -338,6 +344,8 @@ const initialize = function () {
 			includeSchema: {
 				'rooter_feed': [
 					'feed',
+					'feed_has_feed_type',
+					'feed_has_tag',
 					'sports_fan_comment_on_feed',
 					'sports_fan_react_on_comment',
 					'sports_fan_react_on_feed',

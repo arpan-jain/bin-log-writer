@@ -289,8 +289,7 @@ const initialize = function () {
 							}
 						});
 					});
-				}
-				else{
+				} else {
 					eventObject.rows.forEach(function (rowElement) {
 						// delete unnecessary keys from rowElement
 						Object.keys(rowElement).forEach(function (currentKey) {
@@ -349,7 +348,8 @@ const initialize = function () {
 					'sports_fan_comment_on_feed',
 					'sports_fan_react_on_comment',
 					'sports_fan_react_on_feed',
-					'sports_fan_share_feed'
+					'sports_fan_share_feed',
+					'sports_fan_views_feed'
 				]
 			}
 		});

@@ -11,7 +11,7 @@
     "region": "ap-southeast-1"
   },
   "redis":{
-    "host":"52.220.142.73",
+    "host":"rooter-feed.rjyyos.ng.0001.apse1.cache.amazonaws.com",
     "port":"6441"
   },
   "mail":{

@@ -16,7 +16,7 @@
   },
   "mail":{
     "subject":"dev : rooter-feed-changelog-writer error",
-    "recipients":"arpan@rooter.io",
+    "recipients":"arpan@rooter.io,sudhakar@rooter.io,shweta@rooter.io",
     "username":"dev-error@rooter.io",
     "password":"neymar_psg2017"
   },

@@ -349,7 +349,8 @@ const initialize = function () {
 					'sports_fan_react_on_comment',
 					'sports_fan_react_on_feed',
 					'sports_fan_share_feed',
-					'sports_fan_views_feed'
+					'sports_fan_views_feed',
+					'sports_fan_read_time_feed'
 				]
 			}
 		});

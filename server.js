@@ -25,49 +25,6 @@ let redisKey = config.offsetKey,   // key to hold current offset position
 
 //var t1 = new Date();
 
-/*var fetchAndPutEvent = function() {
-    var currentEvent = eventQueue.shift(); // dequeue from the fifo queue
-
-    if (currentEvent) {
-        currentEvent = JSON.parse(currentEvent);
-        // put in the kinesis stream with sequence number of last putRecord operation to achieve ordering of events
-        return kinesis.putRecord(currentEvent, sequenceNumber, function(err, result) {
-            if (err) {
-                // in case of error while putting in kinesis stream kill the server and replay from the last successful offset
-                logger.fatal('Error in putting kinesis record', err);
-                return setTimeout(function() {
-                    process.exit(0);
-                }, 10000);
-            }
-            try {
-                //store the binlog offset and kinesis sequence number in an external memory
-                sequenceNumber = result.SequenceNumber;
-                var offsetObject = {
-                    binlogName: currentEvent.currentBinlogName,
-                    binlogPos: currentEvent.currentBinlogPos,
-                    sequenceNumber: sequenceNumber
-                };
-                redisClient.hmset(redisKey, offsetObject);
-            }
-            catch (ex) {
-                logger.fatal('Exception in putting kinesis record', ex);
-                setTimeout(function() {
-                    process.exit(0);
-                }, 10000);
-            }
-            return setImmediate(function() {
-                return fetchAndPutEvent();
-            });
-        });
-    }
-    else {
-        // in case of empty queue just recursively call the function again
-        return setImmediate(function() {
-            return fetchAndPutEvent();
-        });
-    }
-};*/
-
 const fetchAndPutEvent = function () {
 
 	if (eventQueue.length) {
@@ -103,42 +60,7 @@ const fetchAndPutEvent = function () {
 				process.exit(0);
 			}, 10000);
 		}
-
-		/*return zlib.gzip(JSON.stringify(payload),function(err, payloadBuffer){
-				payloadString = payloadBuffer.toString('base64');
-				console.log('size of buffer (in kB)', ((payloadString.length) * 2) / 1024);
-				console.log('\n\n');
-				return kinesis.putRecord(payloadString, sequenceNumber, function(err, result) {
-						if (err) {
-								// in case of error while putting in kinesis stream kill the server and replay from the last successful offset
-								logger.fatal('Error in putting kinesis record', err);
-								return setTimeout(function() {
-										process.exit(0);
-								}, 10000);
-						}
-						try {
-								//store the binlog offset and kinesis sequence number in an external memory
-								sequenceNumber = result.SequenceNumber;
-								var offsetObject = {
-										binlogName: currentEvent.currentBinlogName,
-										binlogPos: currentEvent.currentBinlogPos,
-										sequenceNumber: sequenceNumber
-								};
-								redisClient.hmset(redisKey, offsetObject);
-								var t2 = new Date();
-								console.log('diff', t2.getTime() - t1.getTime());
-						}
-						catch (ex) {
-								logger.fatal('Exception in putting kinesis record', ex);
-								setTimeout(function() {
-										process.exit(0);
-								}, 10000);
-						}
-						return setImmediate(function() {
-								return fetchAndPutEvent();
-						});
-				});
-		});*/
+		
 		return kinesis.putRecord(payloadString, sequenceNumber, function (err, result) {
 			if (err) {
 				// in case of error while putting in kinesis stream kill the server and replay from the
